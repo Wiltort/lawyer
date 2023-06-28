@@ -1,7 +1,8 @@
 {% extends "base.html" %} 
-{% block title %}Предоставляемые услуги{% endblock %}
+{% block title %}Юридические услуги{% endblock %}
 
 {% block content %}
+{% include "banner.html" with banners=banners %}
 <div class="container">
 
     {% include "menu.html" with index=True %}
