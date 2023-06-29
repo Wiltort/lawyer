@@ -5,29 +5,12 @@
 {% include "banner.html" with banners=banners %}
 <div class="container">
 
-    {% include "menu.html" with index=True %}
     
         <h1>Юридические услуги</h1>
-        
-        
-            <div class="container text-left">
-              <div class="row row-cols-2 row-cols-lg-10 g-2 g-lg-3">
-                {% for srv in srv_list %}
-                    <div class="col">
-                        <div class="p-3 bg-info"> 
-                            <h4 align = center >
-                            {{ srv.title }}
-                            </h4>
+        {% include "menu.html" with srv_list=srv_list srv_per_list=srv_per_list srv_jur_list=srv_jur_list %}
 
-                            <p >
-                                {{srv.description}}
-                            </p>
-                            <button type="button" class="btn btn-primary">Записаться</button>
-                        </div>
-                    </div>
-                {% endfor %}
-              </div>
-            </div>
+        
+
 
 
 

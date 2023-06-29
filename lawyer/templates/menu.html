@@ -1,12 +1,75 @@
-{% if user.is_authenticated %} 
-<div class="row">
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link {% if index %}active{% endif %}" href="{% url 'index' %}">Все авторы</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {% if follow %}active{% endif %}" href="/follow" >Избранные авторы</a>
-        </li>
-    </ul>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">Все</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="per-tab" data-bs-toggle="tab" data-bs-target="#per-tab-pane" type="button" role="tab" aria-controls="per-tab-pane" aria-selected="false">Физическим лицам</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="jur-tab" data-bs-toggle="tab" data-bs-target="#jur-tab-pane" type="button" role="tab" aria-controls="jur-tab-pane" aria-selected="false">Юридическим лицам</button>
+  </li>
+
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
+    <div class="container text-left">
+      <div class="row row-cols-2 row-cols-lg-10 g-2 g-lg-3">
+        {% for srv in srv_list %}
+            <div class="col">
+                <div class="p-3 bg-info"> 
+                    <h4 align = center >
+                    {{ srv.title }}
+                    </h4>
+
+                    <p >
+                        {{srv.description}}
+                    </p>
+                    <button type="button" class="btn btn-primary">Записаться</button>
+                </div>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="per-tab-pane" role="tabpanel" aria-labelledby="per-tab" tabindex="1">
+    <div class="container text-left">
+      <div class="row row-cols-2 row-cols-lg-10 g-2 g-lg-3">
+        {% for srv in srv_per_list %}
+            <div class="col">
+                <div class="p-3 bg-info"> 
+                    <h4 align = center >
+                    {{ srv.title }}
+                    </h4>
+
+                    <p >
+                        {{srv.description}}
+                    </p>
+                    <button type="button" class="btn btn-primary">Записаться</button>
+                </div>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="jur-tab-pane" role="tabpanel" aria-labelledby="jur-tab" tabindex="2">
+    <div class="container text-left">
+      <div class="row row-cols-2 row-cols-lg-10 g-2 g-lg-3">
+        {% for srv in srv_jur_list %}
+            <div class="col">
+                <div class="p-3 bg-info"> 
+                    <h4 align = center >
+                    {{ srv.title }}
+                    </h4>
+
+                    <p >
+                        {{srv.description}}
+                    </p>
+                    <button type="button" class="btn btn-primary">Записаться</button>
+                </div>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
 </div>
-{% endif %}
