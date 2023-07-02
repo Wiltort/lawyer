@@ -8,7 +8,10 @@ class Client(models.Model):
     first_name = models.CharField(max_length=30, verbose_name='Имя')
     last_name = models.CharField(max_length=30, verbose_name='Фамилия')
     phone = PhoneNumberField(unique = True, null = False, blank = False)
-    email = models.EmailField(unique=True, null = True, blank=True)
+    email = models.EmailField(null = True, blank=True)
+    service = models.ForeignKey('Service', null=True, blank=True, 
+                                on_delete=models.DO_NOTHING, 
+                                related_name='clients')
     class Meta:
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'

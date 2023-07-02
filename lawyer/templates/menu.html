@@ -17,14 +17,16 @@
         {% for srv in srv_list %}
             <div class="col">
                 <div class="p-3 bg-info"> 
-                    <h4 align = center >
-                    {{ srv.title }}
+                    <h4 align = center>
+                      <a href="/services/{{ srv.id }}/">
+                        {{ srv.title }}
+                      </a>
                     </h4>
 
                     <p >
                         {{srv.description}}
                     </p>
-                    <button type="button" class="btn btn-primary">Записаться</button>
+                    <a class="btn btn-primary" href="/services/{{ srv.id }}/new-client/" role="button">Записаться</a>
                 </div>
             </div>
         {% endfor %}
@@ -37,14 +39,16 @@
         {% for srv in srv_per_list %}
             <div class="col">
                 <div class="p-3 bg-info"> 
-                    <h4 align = center >
-                    {{ srv.title }}
-                    </h4>
+                  <h4 align = center>
+                    <a href="/services/{{ srv.id }}/">
+                      {{ srv.title }}
+                    </a>
+                  </h4>
 
-                    <p >
-                        {{srv.description}}
-                    </p>
-                    <button type="button" class="btn btn-primary">Записаться</button>
+                  <p >
+                      {{srv.description}}
+                  </p>
+                  <a class="btn btn-primary" href="/services/{{ srv.id }}/new-client/" role="button">Записаться</a>
                 </div>
             </div>
         {% endfor %}
@@ -57,14 +61,16 @@
         {% for srv in srv_jur_list %}
             <div class="col">
                 <div class="p-3 bg-info"> 
-                    <h4 align = center >
-                    {{ srv.title }}
-                    </h4>
+                  <h4 align = center>
+                    <a href="/services/{{ srv.id }}/">
+                      {{ srv.title }}
+                    </a>
+                  </h4>
 
-                    <p >
-                        {{srv.description}}
-                    </p>
-                    <button type="button" class="btn btn-primary">Записаться</button>
+                  <p >
+                      {{srv.description}}
+                  </p>
+                  <a class="btn btn-primary" href="/services/{{ srv.id }}/new-client/" role="button">Записаться</a>
                 </div>
             </div>
         {% endfor %}

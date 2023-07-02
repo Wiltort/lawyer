@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-a*843m7puijo!81q#8l01kxk6*_uknte*1$k6cu&jd8#0(d1w+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "[::1]",
+    "testserver",
+]
 
 
 # Application definition
@@ -40,6 +45,10 @@ INSTALLED_APPS = [
     'services',
     'phonenumber_field',
     'sorl.thumbnail',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+    'social_django',
+    'Users',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -102,6 +113,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = {
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',    
+}
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = 'XXXXXXX'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'XXXXXXXX'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -128,3 +146,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Идентификатор текущего сайта
+SITE_ID = 1

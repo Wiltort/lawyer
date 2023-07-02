@@ -8,7 +8,7 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('title', 'text', 'pub_date')
 
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'phone', 'email')
+    list_display = ('pk', 'first_name', 'last_name', 'phone', 'email', 'service')
     list_display_links = ('first_name', 'last_name')
     search_fields = ('first_name', 'last_name', 'phone')
 
@@ -17,7 +17,7 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display_links = ('text',)
     
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ('title', 'pers', 'group', 'description', 'price')
+    list_display = ('pk', 'title', 'pers', 'group', 'description', 'price')
     list_display_links = ('title',)
 
 class GroupAdmin(admin.ModelAdmin):

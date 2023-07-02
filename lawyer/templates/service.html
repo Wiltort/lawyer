@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %} {{service.title}} {% endblock %}
+{% block header %} Услуга <span style="color:green">{{service.title}}</span> {% endblock %}
+{% block content %}
+<h4>Для: {{ service.pers }}</h4>
+
+<p>{{ service.description }}</p>
+<button type="button" class="btn btn-primary">Записаться</button>
+
+{% endblock %}
