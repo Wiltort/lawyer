@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+    {% if Edit %}
+        Добавить запись
+    {% else %}
+        Новая запись
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 p-5">
+        <div class="card">
+            {% if Edit %}
+                <div class="card-header">Редактировать запись</div>
+            {% else %}
+                <div class="card-header">Новая запись</div>
+            {% endif %}
+            
+            <div class="card-body">
+                
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if Edit %}
+                        <input type="submit" value="Сохранить">
+                    {% else %}
+                        <input type="submit" value="Опубликовать">
+                    {% endif %}
+                    
+                </form>
+            </div> <!-- card body -->
+        </div> <!-- card -->
+    </div> <!-- col -->
+</div> <!-- row -->
+
+{% endblock %}

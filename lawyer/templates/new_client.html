@@ -18,7 +18,7 @@
                     {% endfor %}
   
                     <p>Чтобы записаться на встречу, оставьте свои данные</p>
-                <form method="post" action="{% url 'signup' %}">
+                <form method="post">
                     {% csrf_token %}
   
                     {% for field in form %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %} 
+{% block title %}Блог{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    
+
+        <h1>Новости</h1>
+      
+        {% for post in page %}
+        <h3>
+          {% include "post_item.html" with post=post perm=perm %}
+        </h3>
+        
+      
+        
+        {% endfor %}
+        
+        {% if perm %}
+        <a class="btn btn-primary" href="{% url 'new_post' %}"
+               role="button">
+               Добавить пост
+       </a>
+       {% endif %}
+
+        {% if page.has_other_pages %}
+            {% include "paginator.html" with items=page paginator=paginator %}
+        {% endif %}
+
+
+
+</div>
+{% endblock %}
