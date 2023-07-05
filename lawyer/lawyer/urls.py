@@ -21,7 +21,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('services.urls')),
     path('about/', include('django.contrib.flatpages.urls')),
     path('social/', include('social_django.urls', namespace='social')),
     #  регистрация и авторизация
@@ -29,7 +28,9 @@ urlpatterns = [
 
     #  если нужного шаблона для /auth не нашлось в файле users.urls — 
     #  ищем совпадения в файле django.contrib.auth.urls
-    path("auth/", include("django.contrib.auth.urls")),   
+    path("auth/", include("django.contrib.auth.urls")),
+    path('', include('services.urls')),
+   
 ]
 
 if settings.DEBUG:

@@ -1,18 +1,44 @@
 {% extends "base.html" %} 
 {% block title %}Юридические услуги{% endblock %}
-
+{% block header %}Главная страница{% endblock %}
 {% block content %}
+<main role="main" class="container">
+    <div class="row">
+            <div class="col-md-3 mb-3 mt-1">
+                <div class="card">
+                        <div class="card-body">
+                                <div class="h2">
+                                    Новости
+                                </div>
+                                
+                        </div>
+                        
+                        <ul class="list-group list-group-flush">
+                            {% for news in last_news %}
+
+                                <li class="list-group-item">
+                                        <div class="h5">
+                                            <a href="{% url 'post' news.id %}">{{ news.title }}</a>
+                                        </div>
+                                            <div class="p">
+                                                {{news.text}}
+                                            </div>
+                                            <small class="text-muted">
+                                                {{news.pub_date}}
+                                            </small>
+                                    
+                                </li>
+                             
+                            {% endfor %}
+                        </ul>
+                </div>
+        </div>
+<div class="col-md-9">
+
 {% include "banner.html" with banners=banners %}
 <div class="container">
-
-    
         <h1>Юридические услуги</h1>
         {% include "menu.html" with srv_list=srv_list srv_per_list=srv_per_list srv_jur_list=srv_jur_list %}
-
-        
-
-
-
-
-    </div>
+</div>
+</div>
 {% endblock %}

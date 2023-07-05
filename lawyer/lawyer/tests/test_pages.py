@@ -33,3 +33,24 @@ class IndexTest(TestCase):
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code,200,msg='index page is not 200')
         self.assertContains(response, 'Инна', msg_prefix='В странице нет ИННА')
+    
+    def test_new_record(self):
+        '''Проверка возможности добавления записей'''
+        self.client.logout()
+        context = {'title': 'Test post#1', 'text': 'Пост гостя'}
+        self.client.post(reverse('new_post'), context, follow=True)
+        response = self.client.get(reverse('posts'))
+        self.assertNotContains(response, text='Test post#1', msg_prefix='Гость создал пост!')
+        self.client.force_login(self.user)
+        context['title']='Test post#2'
+        self.client.post(reverse('new_post'),context, follow=True)
+        response = self.client.get(reverse('posts'))
+        self.assertNotContains(response, text='Test post#2', msg_prefix='Юзер создал пост!')
+        self.client.force_login(self.admin)
+        context['title']='Test post#3'
+        self.client.post(reverse('new_post'),context, follow=True)
+        response = self.client.get(reverse('posts'))
+        self.assertContains(response, text='Test post#3', msg_prefix='admin не создал пост!')
+
+    #def test_edit_records(self):
+        '''Проверка возможности редактирования записей'''
