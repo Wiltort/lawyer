@@ -8,9 +8,9 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('title', 'text', 'pub_date')
 
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'first_name', 'last_name', 'phone', 'email', 'service')
-    list_display_links = ('first_name', 'last_name')
-    search_fields = ('first_name', 'last_name', 'phone')
+    list_display = ('pk', 'full_name', 'phone', 'email', 'service')
+    list_display_links = ('full_name', )
+    search_fields = ('full_name', 'phone')
 
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('text', 'pub_date')

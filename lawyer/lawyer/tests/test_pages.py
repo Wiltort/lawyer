@@ -54,3 +54,10 @@ class IndexTest(TestCase):
 
     #def test_edit_records(self):
         '''Проверка возможности редактирования записей'''
+
+class Test_404(TestCase):
+    def setUp(self):
+        self.client = Client()
+    def test_page_not_found(self):
+        response = self.client.get('/1/1/')
+        self.assertEqual(response.status_code, 404)

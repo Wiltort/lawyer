@@ -49,6 +49,7 @@ def NewClient(request, pk):
             client = form.save(commit = False)
             client.service = srv
             client.save()
+            #TODO вложить правильный емейл
             send_mail(
                 'Новый клиент',
                 f'Новый клиент записался на услугу: {srv}.',

@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -32,7 +32,6 @@ ALLOWED_HOSTS = [
     "testserver",
 ]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,17 +48,24 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'social_django',
     'Users',
+    'debug_toolbar',
+    'rest_framework',
+    'corsheaders', #для запросов с разных доменов
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/.*$'
 
 ROOT_URLCONF = 'lawyer.urls'
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
@@ -117,9 +123,10 @@ AUTHENTICATION_BACKENDS = {
     'social_core.backends.vk.VKOAuth2',
     'django.contrib.auth.backends.ModelBackend',    
 }
+load_dotenv()
 
-SOCIAL_AUTH_VK_OAUTH2_KEY = 'XXXXXXX'
-SOCIAL_AUTH_VK_OAUTH2_SECRET = 'XXXXXXXX'
+SOCIAL_AUTH_VK_OAUTH2_KEY = os.getenv('AppID')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.getenv('Key')
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -160,3 +167,13 @@ LOGIN_REDIRECT_URL = "index"
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # указываем директорию, в которую будут складываться файлы писем
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

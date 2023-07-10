@@ -5,7 +5,7 @@ from .models import Client, Post, Comment
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = {'first_name', 'last_name', 'phone'}
+        fields = {'full_name', 'phone'}
 
 class PostForm(forms.ModelForm):
     text = forms.CharField(widget=forms.Textarea, required=True)

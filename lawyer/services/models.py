@@ -5,13 +5,14 @@ from phonenumber_field.modelfields import PhoneNumberField
 User = get_user_model()
 # Create your models here.
 class Client(models.Model):
-    first_name = models.CharField(max_length=30, verbose_name='Имя')
-    last_name = models.CharField(max_length=30, verbose_name='Фамилия')
+    full_name = models.CharField(max_length=50, verbose_name='Ф.И.О.')
+    #last_name = models.CharField(max_length=30, verbose_name='Фамилия')
     phone = PhoneNumberField(unique = True, null = False, blank = False)
     email = models.EmailField(null = True, blank=True)
     service = models.ForeignKey('Service', null=True, blank=True, 
                                 on_delete=models.DO_NOTHING, 
                                 related_name='clients')
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время обращения')
     class Meta:
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'
