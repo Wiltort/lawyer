@@ -42,3 +42,10 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     import debug_toolbar
     urlpatterns += (path("__debug__/", include(debug_toolbar.urls)),)
+
+from rest_framework.authtoken import views
+
+urlpatterns += [
+    path('api-token-auth/', views.obtain_auth_token),
+    
+]

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'Users',
     'debug_toolbar',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders', #для запросов с разных доменов
 ]
 
@@ -177,3 +178,13 @@ CACHES = {
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated', 
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
